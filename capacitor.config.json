@@ -1,0 +1,9 @@
+{
+		"webDir":"build",
+		"appId":"svelte-todo-app.ionic.io",
+		"appName":"svelte-todo-app",
+		"_server": {
+		  "url": "http://192.168.254.105:5173/",
+		  "cleartext": true
+		}
+	}
