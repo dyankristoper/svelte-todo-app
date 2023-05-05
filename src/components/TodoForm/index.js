@@ -1,3 +1,3 @@
-import TodoForm from './TodoForm';
+import TodoForm from './TodoForm.svelte';
 
 export default TodoForm;

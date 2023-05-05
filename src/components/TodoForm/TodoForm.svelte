@@ -1,8 +1,6 @@
 <script>
     
     import axios from 'axios';
-    import * as dotenv from 'dotenv';
-    dotenv.config();
 
     let newTaskDescription = '';
 
@@ -18,9 +16,10 @@
             status: 'Pending'
         };
 
-        axios.post( process.env.FIREBASE_URL , newTask )
+        axios.post( 'https://firebase.com' , newTask )
             .then( response => console.log( response ) )
             .catch( e => console.error( e ))
+
         // Clear new task value
         newTask = '';
     }
@@ -31,7 +30,8 @@
 <form on:submit={ onSubmitHandler }>
     <input
         type ='text'
-        value={ newTaskDescription }
+        placeholder='Enter new task description...'
+        bind:value={ newTaskDescription }
     >
     <input
         type='submit'
