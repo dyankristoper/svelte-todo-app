@@ -1,6 +1,10 @@
 <script>
     
-    import axios from 'axios';
+    import { v4 as uuid } from 'uuid';
+
+    // Firebase
+    import { db } from '../../settings/firebaseConfig';
+    import { set, ref } from 'firebase/database';
 
     let newTaskDescription = '';
 
@@ -10,15 +14,16 @@
     */
     const onSubmitHandler = ( e ) => {
         e.preventDefault();
+        const newUUID = uuid();
 
         let newTask = {
+            id: newUUID,
             name: newTaskDescription,
             status: 'Pending'
         };
 
-        axios.post( 'https://firebase.com' , newTask )
-            .then( response => console.log( response ) )
-            .catch( e => console.error( e ))
+        // Save record to Realtime Database
+        set( ref( db, `/${ newUUID }`), newTask );
 
         // Clear new task value
         newTask = '';
