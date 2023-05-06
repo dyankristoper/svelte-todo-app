@@ -26,8 +26,10 @@
 	"dependencies": {
 		"@capacitor/core": "^5.0.0",
 		"@ionic/core": "^7.0.3",
+		"dotenv": "^16.0.3",
 		"firebase": "^9.21.0",
 		"ionic-svelte": "^0.5.78",
-		"ionicons": "^7.1.0"
+		"ionicons": "^7.1.0",
+		"uuid": "^9.0.0"
 	}
 }
