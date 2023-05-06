@@ -28,6 +28,7 @@
 		"@ionic/core": "^7.0.3",
 		"axios": "^1.4.0",
 		"dotenv": "^16.0.3",
+		"firebase": "^9.21.0",
 		"ionic-svelte": "^0.5.78",
 		"ionicons": "^7.1.0"
 	}
