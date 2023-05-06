@@ -3,7 +3,7 @@
     import { v4 as uuid } from 'uuid';
 
     // Firebase
-    import { db } from '../../settings/firebaseConfig';
+    import { db } from '../../lib/firebaseConfig';
     import { set, ref } from 'firebase/database';
 
     let newTaskDescription = '';
@@ -26,7 +26,7 @@
         set( ref( db, `/${ newUUID }`), newTask );
 
         // Clear new task value
-        newTask = '';
+        newTaskDescription = '';
     }
 
 </script>
