@@ -37,6 +37,7 @@
         <ion-col>
             {#each tasks as task, index}
                 <Task 
+                    id          ={ task.id }
                     description ={ task.description } 
                     status      ={ task.status } />
             {/each} 
