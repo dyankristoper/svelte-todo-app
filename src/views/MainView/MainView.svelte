@@ -6,6 +6,11 @@
     import TodoForm from "../../components/TodoForm/TodoForm.svelte";
     import Task from '../../components/Task/Task.svelte';
 
+    // Ionic components
+    import 'ionic-svelte/components/ion-grid';
+    import 'ionic-svelte/components/ion-col';
+    import 'ionic-svelte/components/ion-row';
+
     let tasks = [];
 
     const collectionRef = collection( db, 'tasks' );
@@ -21,17 +26,20 @@
     $: console.table( tasks );
 </script>
 
-<svelte:head>
-    <title>Todo App</title>
-</svelte:head>
-<main>
-    <TodoForm />
+<ion-grid>
+    <ion-row>
+        <ion-col>
+            <TodoForm />
+        </ion-col>
+    </ion-row>
 
-        
-    {#each tasks as task, index}
-        <Task 
-            description ={ task.description } 
-            status      ={ task.status } />
-    {/each} 
-        
-</main>
+    <ion-row>
+        <ion-col>
+            {#each tasks as task, index}
+                <Task 
+                    description ={ task.description } 
+                    status      ={ task.status } />
+            {/each} 
+        </ion-col>
+    </ion-row>
+</ion-grid>

@@ -16,9 +16,9 @@
     </ion-card-header>
     <ion-card-content>
         {#if status === 'pending' }
-            <ion-button>Mark as Done</ion-button>
+            <ion-button size='small'>Mark as Done</ion-button>
         {/if}
-        <ion-button>Delete</ion-button>
+        <ion-button size='small' color='danger'>Delete</ion-button>
     </ion-card-content>
 </ion-card>
 

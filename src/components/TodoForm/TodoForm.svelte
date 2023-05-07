@@ -48,7 +48,8 @@
     >
 
     <ion-button
-        type='submit'    
+        type='submit'
+        size='small'    
     >
         Add Task
     </ion-button>
