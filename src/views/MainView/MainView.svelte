@@ -21,6 +21,9 @@
     $: console.table( tasks );
 </script>
 
+<svelte:head>
+    <title>Todo App</title>
+</svelte:head>
 <main>
     <TodoForm />
 
