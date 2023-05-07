@@ -2,11 +2,17 @@
     
     import { v4 as uuid } from 'uuid';
 
+    // Ionic components
+    import 'ionic-svelte/components/ion-button';
+    import 'ionic-svelte/components/ion-item';
+    import 'ionic-svelte/components/ion-input';
+
     // Firebase
-    import { db } from '../../settings/firebaseConfig';
-    import { set, ref } from 'firebase/database';
+    import { db } from '$lib/firebaseConfig';
+    import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
     let newTaskDescription = '';
+    const collectionRef = collection( db, 'tasks' );
 
     /** 
         @description    Send POST request to Firebase
@@ -14,19 +20,21 @@
     */
     const onSubmitHandler = ( e ) => {
         e.preventDefault();
-        const newUUID = uuid();
 
         let newTask = {
-            id: newUUID,
-            name: newTaskDescription,
-            status: 'Pending'
+            description: newTaskDescription,
+            status: 'pending',
+            createdDate: serverTimestamp()
         };
 
-        // Save record to Realtime Database
-        set( ref( db, `/${ newUUID }`), newTask );
+        const addNewTask = async () => {
+            await addDoc( collectionRef, newTask );
+        }
+
+        addNewTask();
 
         // Clear new task value
-        newTask = '';
+        newTaskDescription = '';
     }
 
 </script>
@@ -38,8 +46,12 @@
         placeholder='Enter new task description...'
         bind:value={ newTaskDescription }
     >
-    <input
+
+    <ion-button
         type='submit'
-        value='+ Add Task'
+        size='small'    
     >
+        Add Task
+    </ion-button>
+
 </form>
