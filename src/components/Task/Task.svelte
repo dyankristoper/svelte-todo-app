@@ -51,7 +51,7 @@
         <ion-button 
             size='small' 
             color='secondary'
-            on:click={showModal}
+            on:click={ showModal(description, id) }
             >Update</ion-button>
         <ion-button 
             size='small' 
