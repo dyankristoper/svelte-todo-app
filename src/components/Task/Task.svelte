@@ -7,24 +7,32 @@
 
     // Firestore
     import { db } from '$lib/firebaseConfig';
-    import { collection, deleteDoc, doc } from 'firebase/firestore';
+    import { collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
     const collectionRef = collection( db, 'tasks' );
 
     // Get props here
     export let description;
     export let status;
     export let id;
+    export let showModal;
+
+    const taskDoc = doc(db, 'tasks', id);
 
     // Delete current task identified by props: id
-    const onDeleteTaskHandler = () => {
-        console.log('On delete task');
-        const taskDoc = doc(db, 'tasks', id);
-        
+    const onDeleteTaskHandler = () => {        
         const deleteTask = async () => {
             await deleteDoc( taskDoc );
         }
 
         deleteTask();
+    }
+
+    const onMarkAsDoneHandler = () => {
+        const markAsDone = async () => {
+            await setDoc( taskDoc, { status: 'Done' }, { merge: true })
+        }
+
+        markAsDone();
     }
 
 </script>
@@ -35,8 +43,16 @@
     </ion-card-header>
     <ion-card-content>
         {#if status === 'pending' }
-            <ion-button size='small'>Mark as Done</ion-button>
+            <ion-button 
+                size='small'
+                on:click={ onMarkAsDoneHandler }
+                >Mark as Done</ion-button>
         {/if}
+        <ion-button 
+            size='small' 
+            color='secondary'
+            on:click={showModal}
+            >Update</ion-button>
         <ion-button 
             size='small' 
             color='danger'
