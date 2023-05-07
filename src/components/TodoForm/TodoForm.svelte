@@ -41,17 +41,32 @@
 
 
 <form on:submit={ onSubmitHandler }>
-    <input
-        type ='text'
-        placeholder='Enter new task description...'
-        bind:value={ newTaskDescription }
-    >
-
-    <ion-button
-        type='submit'
-        size='small'    
-    >
-        Add Task
-    </ion-button>
-
+    <ion-grid>
+        <ion-row>
+            <ion-col size='8'>
+                <input
+                    type ='text'
+                    placeholder='Enter new task description...'
+                    bind:value={ newTaskDescription }
+                >
+            </ion-col>
+            <ion-col size='auto'>
+                <ion-button
+                    type='submit'
+                    size='small'    
+                >
+                    Add Task
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </form>
+
+<style>
+
+input{
+    height: 100%;
+    width:  100%;
+}
+
+</style>

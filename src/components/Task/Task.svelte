@@ -39,7 +39,7 @@
 
 <ion-card>
     <ion-card-header>
-        <ion-card-title>{ description }</ion-card-title>
+        <ion-card-title class='{ status === 'Done' ? 'slashed-task' :'' }'>{ description }</ion-card-title>
     </ion-card-header>
     <ion-card-content>
         {#if status === 'pending' }
@@ -60,6 +60,12 @@
             >Delete</ion-button>
     </ion-card-content>
 </ion-card>
+
+<style>
+.slashed-task{
+    text-decoration: line-through;
+}
+</style>
 
 
 
