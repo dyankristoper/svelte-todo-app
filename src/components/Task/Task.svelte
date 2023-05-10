@@ -44,12 +44,12 @@
                 size='small'
                 on:click={ onMarkAsDoneHandler }
                 >Mark as Done</ion-button>
+            <ion-button 
+                size='small' 
+                color='secondary'
+                on:click={ showModal(description, id) }
+                >Update</ion-button>
         {/if}
-        <ion-button 
-            size='small' 
-            color='secondary'
-            on:click={ showModal(description, id) }
-            >Update</ion-button>
         <ion-button 
             size='small' 
             color='danger'
