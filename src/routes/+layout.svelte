@@ -46,3 +46,10 @@
 <ion-app>
 	<slot />
 </ion-app>
+
+
+<style>
+	ion-app{
+		overflow-y: scroll;
+	}
+</style>
