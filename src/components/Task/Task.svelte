@@ -7,8 +7,7 @@
 
     // Firestore
     import { db } from '$lib/firebaseConfig';
-    import { collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
-    const collectionRef = collection( db, 'tasks' );
+    import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 
     // Get props here
     export let description;
@@ -16,12 +15,10 @@
     export let id;
     export let showModal;
 
-    const taskDoc = doc(db, 'tasks', id);
-
     // Delete current task identified by props: id
-    const onDeleteTaskHandler = () => {        
+    const onDeleteTaskHandler = ( event ) => {        
         const deleteTask = async () => {
-            await deleteDoc( taskDoc );
+            await deleteDoc( doc(db, 'tasks', id) );
         }
 
         deleteTask();
@@ -29,7 +26,7 @@
 
     const onMarkAsDoneHandler = () => {
         const markAsDone = async () => {
-            await setDoc( taskDoc, { status: 'Done' }, { merge: true })
+            await setDoc( doc(db, 'tasks', id), { status: 'Done' }, { merge: true })
         }
 
         markAsDone();
@@ -39,7 +36,7 @@
 
 <ion-card>
     <ion-card-header>
-        <ion-card-title class='{ status === 'Done' ? 'slashed-task' :'' }'>{ description }</ion-card-title>
+        <ion-card-title class='{ status === 'Done' ? 'task__slashed' :'' }'>{ description }</ion-card-title>
     </ion-card-header>
     <ion-card-content>
         {#if status === 'pending' }
@@ -47,12 +44,12 @@
                 size='small'
                 on:click={ onMarkAsDoneHandler }
                 >Mark as Done</ion-button>
+            <ion-button 
+                size='small' 
+                color='secondary'
+                on:click={ showModal(description, id) }
+                >Update</ion-button>
         {/if}
-        <ion-button 
-            size='small' 
-            color='secondary'
-            on:click={ showModal(description, id) }
-            >Update</ion-button>
         <ion-button 
             size='small' 
             color='danger'
@@ -62,7 +59,7 @@
 </ion-card>
 
 <style>
-.slashed-task{
+.task__slashed{
     text-decoration: line-through;
 }
 </style>
