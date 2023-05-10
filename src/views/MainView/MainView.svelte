@@ -17,6 +17,9 @@
     import 'ionic-svelte/components/ion-label';
     import 'ionic-svelte/components/ion-input';
 
+    // Utility functions
+    import { sortTaskByStatus } from '../../utils/sort.svelte';
+    console.log( sortTaskByStatus );
 
     let tasks = [];
     let isOpen = false;
@@ -34,7 +37,7 @@
             tempTasks.push({ ...doc.data(), id: doc.id });
         });
 
-        tasks = [...tempTasks];
+        tasks = [...tempTasks.sort(sortTaskByStatus)];
     });
 
     /** 
