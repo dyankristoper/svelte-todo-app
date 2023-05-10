@@ -18,8 +18,7 @@
     import 'ionic-svelte/components/ion-input';
 
     // Utility functions
-    import { sortTaskByStatus } from '../../utils/sort.svelte';
-    console.log( sortTaskByStatus );
+    import { sortTaskByStatus, sortByCreatedDate } from '../../utils/sort.svelte';
 
     let tasks = [];
     let isOpen = false;
@@ -36,7 +35,7 @@
         querySnapshot.forEach( doc => {
             tempTasks.push({ ...doc.data(), id: doc.id });
         });
-
+        tempTasks.sort( sortByCreatedDate );
         tasks = [...tempTasks.sort(sortTaskByStatus)];
     });
 
