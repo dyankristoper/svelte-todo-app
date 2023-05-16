@@ -45,7 +45,7 @@
                         Shows modal to update task
     */
     const showModal = ( description, id ) => {
-        let currentValueIsOpen = !isOpen;
+        let currentValueIsOpen = true;
 
         isOpen = currentValueIsOpen;
 
@@ -99,7 +99,10 @@
 </ion-grid>
 
 
-<ion-modal is-open={ isOpen } on:close={ () => isOpen = false }>
+<ion-modal 
+    is-open={ isOpen } 
+    backdrop-dismiss={ false }
+    >
     <ion-content>
         <ion-grid>
             <ion-row>
@@ -129,6 +132,13 @@
                         on:click={onUpdateDescriptionHandler} >
                         Update
                     </ion-button>
+
+                    <ion-button 
+                        color='danger'
+                        expand='full'
+                        on:click={ () => isOpen = false } >
+                    Close
+                </ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
